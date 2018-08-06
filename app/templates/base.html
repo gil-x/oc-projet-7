@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>{{ title }}</title>
+      <link href="{{ url_for('static', filename='gpb.css') }}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+{% block body %}
+{% endblock %}
+{% block footer %}
+<footer>© Gino Ladowitch 2018 - <a href="https://github.com/gil-x" target="_blank">Github</a> - <a href="https://www.linkedin.com/in/gino-ladowitch/" target="_blank">LN</a></footer>
+{% endblock %}
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}"> 
+</script>
+<script src="{{ url_for('static', filename='gpb.js') }}"></script>
+  </body>
+</html>

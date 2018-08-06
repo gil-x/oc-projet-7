@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block body %}
+    <div id="page">
+        <h1>{{ title }}</h1>
+        <h4>127 ans, pas toutes ses dents, mais incollable en géographie !</h4>
+
+        <div id="grandpy">
+            <div id="eyebrow_l"></div>
+            <div id="eyebrow_r"></div>
+            <div id="eyes"></div>
+            <div id="mouth"></div>
+        </div>
+
+        <div id="chat-body">
+        </div>
+        <div id="chat-dots">
+            <div id="dot-container">
+                <div id="dots">
+                    <div id="dot1" class="dot"></div>
+                    <div id="dot2" class="dot"></div>
+                    <div id="dot3" class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="message-box">
+            <form action="" method="">
+                    {{ form.hidden_tag() }}
+                    {{ form.message(size=32) }}
+                    {{ form.submit() }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
