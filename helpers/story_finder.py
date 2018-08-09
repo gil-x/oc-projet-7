@@ -29,10 +29,6 @@ class StoryFinder:
         try:
             response = requests.get(self.api, params=args)
             data = response.json()
-            # print("===================")
-            # print("The MOCK:")
-            # pp.pprint(data)
-            # print("= end of the mock =")
             stories_list = []
 
             try:

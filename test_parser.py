@@ -2,7 +2,6 @@
 # coding: utf-8
 
 from helpers.parser import Parser
-# from parser import Parser
 
 class TestParser:
     """

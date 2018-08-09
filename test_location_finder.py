@@ -8,9 +8,7 @@ from io import BytesIO
 
 from unittest.mock import patch
 from helpers.config import Config
-# from config import API_KEY
 from helpers.location_finder import LocationFinder
-# from location_finder import LocationFinder
 
 class TestLocationFinder(unittest.TestCase):
     """

@@ -5,10 +5,8 @@ import requests
 import unittest
 import json
 
-
 from unittest.mock import patch
 from helpers.story_finder import StoryFinder
-# from story_finder import StoryFinder
 
 class TestStoryFinder(unittest.TestCase):
     """

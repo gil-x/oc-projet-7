@@ -27,9 +27,7 @@ class LocationFinder:
 
         try:
             response = requests.get(self.api, params=args)
-            # print(response)
             data = response.json()
-            # print(data)
 
             if data == {'results': [], 'status': 'ZERO_RESULTS'}:
                 return { "api_response": "no_result"}
