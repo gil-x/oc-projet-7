@@ -9,11 +9,8 @@
 #grandpy {
 	width: 180px;
 	height: 200px;
-	/* margin-left: auto;
-	margin-right: auto; */
 	display: inline-block;
 	background: url("img/grandpy_head.png");
-	/* transition: all 0.2s; */
 }
 #grandpy * {
 	position: absolute;
@@ -23,7 +20,6 @@
 	width: 40px;
 	height: 14px;
 	background: url("img/grandpy_sourcil.png");
-	/* transition: all 0.2s; */
 }
 #eyebrow-l {
 	transform: translate(40px, 52px) rotateZ(-10deg);
@@ -105,8 +101,6 @@
 	75% {transform: translate(68px, 68px); height: 10px;}
 	100% {transform: translate(66px, 62px); height: 10px;}
 }
-
-/* animation: name duration timing-function delay iteration-count direction fill-mode; */
 
 .eyebrow-l-down {
 	animation: eyebrow-l-down 0.25s 1;

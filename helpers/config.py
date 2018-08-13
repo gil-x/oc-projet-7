@@ -8,11 +8,11 @@ AFFIRMATIVE_WORDS = ["oui", "ouais", "yes", "yeap", "affirmatif", "absolument", 
 
 NEGATIVE_WORDS = ["no", "non", "nope", "négatif", "pas du tout", ]
 
-HELLO_WORDS = ["bonjour", "salut", "hello", "coucou", "salutations", "bonsoir", "grand-père", "papy", "grand père", "mon vieux"]
+HELLO_WORDS = ["bonjour", "bonsoir", "coucou", "grand père", "hello", "mon vieux", "papy", "salut", "salutations"]
 
 ASKING_WORDS = [ "dire", "raconter", ]
 
-QUIT_WORDS = ["revoir", "je te laisse", "à bientôt", "salutations", "bonsoir", "adieu", "bye", "à plus", "à +"]
+QUIT_WORDS = ["revoir", "je te laisse", "à bientôt", "salutations", "bonsoir", "adieu", "bye", "à plus", "à +", "a +", "@ +", "@+"]
 
 THANKS_WORDS = ["génial", "merci", "super", "top", ]
 

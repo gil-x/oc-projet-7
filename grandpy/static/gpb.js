@@ -65,8 +65,6 @@ function write_message(message, delay, author='grandpy') {
     var dots = document.getElementById("dots");
     dots.classList.add("visible");
 
-    // var grandpy = document.getElementById("grandpy");
-
     setTimeout(function(){
         chat_body.appendChild(container);
         container.appendChild(thumbnail);
@@ -81,25 +79,34 @@ function write_granpy_responses(response) {
         var response = JSON.parse(response);
 
         grandpy_face(0);
-        if (response["hello"]) {
-            write_message(response["hello"], 500);
-        }
-        write_message(response["hello"], 500);
-        write_message(response["reflexion"], 1000);
-        write_message(response["location"]["address"], 2000);
-        write_message(response["localize"], 3000);
-        init_map(
-            response["location"]["latitude"],
-            response["location"]["longitude"],
-            4000,
-        );
-        write_message(response["near"] + response["stories"][0]["name"], 5000);
-        write_message(response["stories"][0]["extract"], 8000);
-        write_message(response["end"], 8500);
 
-        setTimeout(function(){
-            dots.classList.remove("visible");
-        }, 8400);
+        if (response["quit"]) {
+            write_message(response["quit"], 500);
+        }
+
+        else {
+            if (response["hello"]) {
+                write_message(response["hello"], 500);
+            }
+            // write_message(response["hello"], 500);
+            write_message(response["reflexion"], 1000);
+            write_message(response["location"]["address"], 2000);
+            write_message(response["localize"], 3000);
+            init_map(
+                response["location"]["latitude"],
+                response["location"]["longitude"],
+                4000,
+            );
+            write_message(response["near"] + response["stories"][0]["name"], 5000);
+            write_message(response["stories"][0]["extract"], 8000);
+            write_message(response["end"], 8500);
+    
+            setTimeout(function(){
+                dots.classList.remove("visible");
+            }, 8400);
+        }
+
+        
     }
     catch(error) {
         var confusion_responses = [
@@ -167,7 +174,6 @@ form.addEventListener('keypress', function(e) {
 
 req.addEventListener("load", function () {
     if (req.status >= 200 && req.status < 400) {
-        // console.log("req.responseText:" + req.response);
         write_granpy_responses(req.response);
     } else {
         console.error(req.status + " " + req.statusText);
@@ -176,7 +182,15 @@ req.addEventListener("load", function () {
 });
 
 req.addEventListener("error", function () {
+    var off_responses = [
+        "GrandPy se sent comme... déconnecté du réseau.",
+        "Je me sens comme... déconnecté du réseau.",
+        "Pfiuuu, je suis pas connecté aujourd'hui... Repasse plus tard.",
+    ]
+    
     console.error("Erreur réseau");
+    write_message(confusion_responses[Math.floor(Math.random() * off_responses.length)]);
+
 });
 
 

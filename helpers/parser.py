@@ -58,12 +58,17 @@ class Parser:
             for sentence in sentence_group:
                 for word in sentence.split():
                     word = word.replace(".", "").replace("!", "").replace("?", "").replace(",", " ")
+                    
                     if word in self.affirmative_words:
                         self.affirmative = True
                     if word in self.negative_words:
                         self.negative = True
                     if word in self.hello_words:
                         self.hello = True
+                    else:
+                        print("word:", word)
+                        print("self.hello_words:", self.hello_words)
+                        print("self.hello", self.hello)
                     if word in self.quit_words:
                         self.quit = True
                     if word in self.thanks_words:
@@ -80,6 +85,8 @@ class Parser:
             "quit": self.quit,
             "thanks": self.thanks,
         }
+
+        print(parsed_response)
 
         # Clean all !
         self.purge()
