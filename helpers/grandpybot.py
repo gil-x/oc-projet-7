@@ -10,10 +10,7 @@ from helpers.story_finder import StoryFinder
 class GrandPyBot:
     """
     This class leads.
-    The ask method receives a dictionnary like {
-            'questions': 'some text', 'intent': 'some text + more text',
-            'affirmative': False, 'negative': False, 'hello': False, 'quit': False, 'thanks': False
-            }
+    The ask method 
     The field 'questions' shall not be used in this version of GranPyBot.
     """
     def __init__(self):
@@ -22,6 +19,12 @@ class GrandPyBot:
         self.story_finder = StoryFinder()
     
     def ask(self, message):
+        """
+        Requires dictionnary arg with following keys:
+        'questions', 'intent', 'affirmative', 'negative',
+        'hello', 'quit' & 'thanks'
+        Returns a dictionnary with all needed informations, if availables.
+        """
         print("new message incoming")
         intent = self.parser.get_intent(message)
         response = {}
@@ -39,17 +42,12 @@ class GrandPyBot:
 
             # Detect an HELLO intent and says hello too
             if intent["hello"]:
-                print("======\nHELLO !\n======")
-                response["hello"] = "HELLO"
-                # response["hello"] = random.sample([
-                #     "Bonjour !",
-                #     "Bonjour mon petit.",
-                #     "À bientôt mon petit.",
-                #     "Hum...? Oh, salut.",
-                #     "Zzzz.. Oh ! Bonjour !",
-                #     ], 1)[0]
-            else:
-                print("======\nno HELLO\n======")
+                response["hello"] = random.sample([
+                    "Bonjour !",
+                    "Bonjour mon petit.",
+                    "Hum...? Oh, salut.",
+                    "Zzzz.. Oh ! Bonjour !",
+                    ], 1)[0]
         
             # Get the location
             location = self.location_finder.find_location(intent["intent"])
@@ -99,7 +97,9 @@ class GrandPyBot:
                     ], 1)[0]
 
             # Get some places stories
-            places_stories = self.story_finder.get_story(location["latitude"], location["longitude"])
+            places_stories = self.story_finder.get_story(
+                location["latitude"], location["longitude"]
+                )
             places_stories_textual_list = []
             if len(places_stories) > 1:
                 for place in places_stories:
@@ -128,6 +128,5 @@ class GrandPyBot:
                     "C'était le bon vieux temps...",
                     "Tu as encore besoin de moi mon petit ?"
                     ], 1)[0]
-
 
         return response

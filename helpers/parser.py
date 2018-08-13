@@ -7,8 +7,7 @@ from helpers.config import *
 
 class Parser:
     """
-    Analyse user messages and filter useful words and sentences, especially questions.
-    The 'get_intent' methode returns a dictionnary.    
+    Analyse user messages and filter useful words and sentences.
     """
     def __init__(self):
         self.affirmative_words = AFFIRMATIVE_WORDS
@@ -28,6 +27,12 @@ class Parser:
         self.intent = []
 
     def get_intent(self, message):
+        """
+        Clean message from punctuation, useless whitespaces and generics words.
+        Gets intents by comparing each usefull word to lists of target words.
+        Returns a dictionnary with the cleaned message and intents as booleans.
+        
+        """
         message = message.lower() + "."
         message = message.replace("..", ".").replace("...", ".").replace("..", ".")
         message = message.replace("!!!", "!").replace("!!", "!")
@@ -35,9 +40,10 @@ class Parser:
         # Now the punctuation should be perfect!
 
         while len(message) > 1:
-            # looks for punctuation, register indexes, then uses indexes to cut in sentences
-            # message will be shortened until ...
-            # ... all sentences are found, and registered according to the ending punctuation
+            # Looks for punctuation, register indexes,
+            # then uses indexes to cut in sentences.
+            # Message will be shortened until all sentences are found
+            # and then registered according to the ending punctuation
             sentence_stops = [message.find("."), message.find("!"), message.find("?")]
             sentence_stops = list(filter(lambda i: i != -1, sentence_stops))
             sentence_stops.sort()
@@ -57,18 +63,13 @@ class Parser:
             # ... and the intent should be the remaining significant words
             for sentence in sentence_group:
                 for word in sentence.split():
-                    word = word.replace(".", "").replace("!", "").replace("?", "").replace(",", " ")
-                    
+                    word = word.replace(".", "").replace("!", "").replace("?", "").replace(",", "")
                     if word in self.affirmative_words:
                         self.affirmative = True
                     if word in self.negative_words:
                         self.negative = True
                     if word in self.hello_words:
                         self.hello = True
-                    else:
-                        print("word:", word)
-                        print("self.hello_words:", self.hello_words)
-                        print("self.hello", self.hello)
                     if word in self.quit_words:
                         self.quit = True
                     if word in self.thanks_words:
@@ -88,12 +89,14 @@ class Parser:
 
         print(parsed_response)
 
-        # Clean all !
         self.purge()
 
         return(parsed_response)
 
     def purge(self):
+        """
+        Purge all attributes.
+        """
         self.exclamations = []
         self.sentences = []
         self.questions = []
@@ -110,9 +113,14 @@ def main():
     testing = True
 
     while testing is True:
-        message = input("Type some text to parse or juste <ENTER> to use a prebuilt test sentence.\n")
+        message = input("""
+Type some text to parse or juste <ENTER> to use a prebuilt test sentence.\n""")
         if message == "":
-            test_sentence = "Salut le vieux ! On m'a dit que c'était cool de discuter avec toi... J'espère que c'est vrai, sinon je me tire !!! Qu'est-ce que tu penses de ça mon petit chatbot adoré ?.. Ça te la coupe hein ? Bon, allez ! J'ai plein de questions à te poser ! GO"
+            test_sentence = """
+Salut le vieux ! On m'a dit que c'était cool de
+discuter avec toi... J'espère que c'est vrai, sinon je me tire !!!
+Qu'est-ce que tu penses de ça mon petit chatbot adoré ?..
+Ça te la coupe hein ? Bon, allez ! J'ai plein de questions à te poser ! GO"""
             print("Test sentence:")
             print(test_sentence)
             print("Response:")

@@ -9,12 +9,16 @@ pp = pprint.PrettyPrinter(indent=4)
 class StoryFinder:
     """
     Go ask Wikimedia API for some informations around a location.
-    The 'get_story' method returns a dictionnary.
     """
     def __init__(self):
         self.api = "https://fr.wikipedia.org/w/api.php"
 
     def get_story(self, latitude, longitude):
+        """
+        Uses requests libray to ask Wikimedia AP.
+        In cas of success returns a list of dictionnarie with the keys:
+        'name' & 'extract', items number depends of how famous the place is.
+        """
         args = {
             "action": "query",
             "generator" : "geosearch",
@@ -47,7 +51,7 @@ class StoryFinder:
                     })
             return stories_list
 
-        except: # TODO Trouver le type d'erreur !
+        except:
             return [{ "api_response": "connection_error" }]
 
 
@@ -71,7 +75,10 @@ def main():
     print(test_coordinates)
     print("=================")
     print("Response:")
-    pp.pprint(story_finder.get_story(test_coordinates["latitude"], test_coordinates["longitude"]))
+    pp.pprint(
+        story_finder.get_story(test_coordinates["latitude"],
+        test_coordinates["longitude"])
+        )
     print("===end reponse===")
 
 

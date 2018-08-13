@@ -9,7 +9,6 @@ from helpers.config import Config
 class LocationFinder:
     """
     Go ask Google Geocoding API to get address and coordinates.
-    The 'find_location' method returns a dictionnary.
     """
     def __init__(self):
         self.api = "https://maps.googleapis.com/maps/api/geocode/json"
@@ -18,6 +17,9 @@ class LocationFinder:
     def find_location(self, intent):
         """
         Uses requests libray to ask Google API.
+        Returns a dictionnary with the keys:
+        - api_response, set to 'ok', 'connection_error' or 'unknown_error'
+        - 'address', 'latitude', 'longitude': the requested informations
         """
 
         args = {
@@ -38,7 +40,7 @@ class LocationFinder:
                     "longitude": data["results"][0]["geometry"]["location"]["lng"],
                     "api_response": "ok",
                 }
-            return { "api_response": "unknow_error" }
+            return { "api_response": "unknown_error" }
 
         except: # TODO Trouver le type d'erreur !
             return { "api_response": "connection_error" }

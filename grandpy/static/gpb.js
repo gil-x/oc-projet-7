@@ -1,5 +1,4 @@
 var form = document.querySelector("form");
-// var form_data = new FormData(form);
 var req = new XMLHttpRequest();
 
 var eyebrow_l = document.getElementById("eyebrow-l");
@@ -12,17 +11,12 @@ if (!(navigator.userAgent.indexOf("Chrome") > -1)) {
     document.getElementById("chat-body").style.display = "flex";
 }
 
+
 /*
     ===============
        Functions
     ===============
 */
-
-
-// var url = document.URL
-// console.log(url)
-// console.log(window.location.protocol + "//" + window.location.hostname)
-// // console.log(url + "/message/")
 
 function send_request(data) {
     req.open("POST", window.location.protocol + "//" + window.location.host + "/message/", true);
@@ -37,19 +31,30 @@ function grandpy_face(expression) {
     mouth.className = "";
 
     switch(expression) {
-        case 0:
-        console.log("grandpy_face 0");
+        case 0: // Welcome face
+        console.log("Grandpy face 0");
+        // eyes.classList.remove("eyes-blink");
+        // eyebrow_l.classList.add("eyebrow-l-blink");
+        // eyebrow_r.classList.add("eyebrow-r-blink");
+        // eyes.classList.add("big-eyes");
+        // mouth.classList.add("mouth-blink");
+        eyes.classList.add("eyes-blink");
+        break;
+
+        case 1: // Thinking
+        console.log("Grandpy face 1");
         eyebrow_l.classList.add("eyebrow-l-down");
         eyebrow_r.classList.add("eyebrow-r-down");
         eyes.classList.add("eyes-up-right");
-        mouth.classList.add("mouse-close");
+        mouth.classList.add("mouth-close");
         break;
-        case 1:
-        console.log("grandpy_face 1");
+
+        case 2: // 
+        console.log("Grandpy face 2");
         eyebrow_l.classList.add("eyebrow-l-blink");
         eyebrow_r.classList.add("eyebrow-r-blink");
         eyes.classList.add("big-eyes");
-        mouth.classList.add("mouse-blink");
+        mouth.classList.add("mouth-blink");
         break;
     }
 }
@@ -84,7 +89,7 @@ function write_granpy_responses(response) {
     try {
         var response = JSON.parse(response);
 
-        grandpy_face(0);
+        grandpy_face(1);
 
         if (response["quit"]) {
             write_message(response["quit"], 500);
@@ -94,7 +99,6 @@ function write_granpy_responses(response) {
             if (response["hello"]) {
                 write_message(response["hello"], 500);
             }
-            // write_message(response["hello"], 500);
             write_message(response["reflexion"], 1000);
             write_message(response["location"]["address"], 2000);
             write_message(response["localize"], 3000);
@@ -110,10 +114,13 @@ function write_granpy_responses(response) {
             setTimeout(function(){
                 dots.classList.remove("visible");
             }, 8400);
-        }
 
-        
+            setTimeout(function(){
+                grandpy_face(0);
+            }, 8500);
+        }
     }
+
     catch(error) {
         var confusion_responses = [
             "Euh... Qui êtes-vous ?",
@@ -122,6 +129,7 @@ function write_granpy_responses(response) {
             "Granpy a besoin de repos là...",
             "Ouh... Je sais plus, tout est flou dans ma tête",
             "Je ne me souviens... de rien.",
+            "Je me sens pas très bien, peut être que j'ai besoin d'un rafraîchissement F5...",
         ]
         write_message(confusion_responses[Math.floor(Math.random() * confusion_responses.length)]);
     }
@@ -135,7 +143,7 @@ function init_map(latitude, longitude, delay) {
     var chat_body = document.getElementById("chat-body");
 
     setTimeout(function(){
-        grandpy_face(1);
+        grandpy_face(2);
         document.getElementById("chat-body").appendChild(map_message);
         var map = new google.maps.Map(
             map_message, {zoom: 12, center: location});
@@ -192,6 +200,7 @@ req.addEventListener("error", function () {
         "GrandPy se sent comme... déconnecté du réseau.",
         "Je me sens comme... déconnecté du réseau.",
         "Pffiuuu, je suis pas connecté aujourd'hui... Repasse plus tard.",
+        "Je me sens déconnecté, peut être qu'avec un petit rafraîchissement F5...",
     ]
     
     console.error("Erreur réseau");
