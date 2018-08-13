@@ -33,11 +33,6 @@ function grandpy_face(expression) {
     switch(expression) {
         case 0: // Welcome face
         console.log("Grandpy face 0");
-        // eyes.classList.remove("eyes-blink");
-        // eyebrow_l.classList.add("eyebrow-l-blink");
-        // eyebrow_r.classList.add("eyebrow-r-blink");
-        // eyes.classList.add("big-eyes");
-        // mouth.classList.add("mouth-blink");
         eyes.classList.add("eyes-blink");
         break;
 
@@ -107,8 +102,11 @@ function write_granpy_responses(response) {
                 response["location"]["longitude"],
                 4000,
             );
-            write_message(response["near"] + response["stories"][0]["name"], 5000);
-            write_message(response["stories"][0]["extract"], 8000);
+            /* get a random place */
+            story_number = Math.floor(Math.random() * response["stories"].length) + 1
+
+            write_message(response["near"] + response["stories"][story_number]["name"], 5000);
+            write_message(response["stories"][story_number]["extract"], 8000);
             write_message(response["end"], 8500);
     
             setTimeout(function(){

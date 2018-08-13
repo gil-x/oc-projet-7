@@ -66,14 +66,12 @@ h4 {
 	padding: 10px;
 	margin: 10px;
 	background: #FFF;
-	border: 2px solid #FFF;
+	border: 1px solid #000;
+	box-shadow: rgba(0,0,0,0.5) 1px 1px 3px;
 	min-height: 50px;
 	animation-name: slideup;
 	animation-duration: 0.25s;
 	animation-iteration-count: 1;
-}
-.message-dots {
-	/* Not used yet */
 }
 .user-message {
 	background: #FFF;
@@ -105,7 +103,8 @@ img {
 	min-height: 300px;
 	width: 100%;
 	flex-basis: 80%;
-	border: 2px solid #FFF;
+	border: 1px solid #000;
+	box-shadow: rgba(0,0,0,0.5) 1px 1px 3px;
 }
 
 
@@ -205,7 +204,7 @@ img {
 	align-items: center;
 }
 .dot {
-	background: #555;
+	background: #FFF;
 	border-radius: 10px;
 	animation-name: blink;
 	animation-duration: 1s;
