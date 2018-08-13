@@ -102,6 +102,10 @@
 	100% {transform: translate(66px, 62px); height: 10px;}
 }
 
+
+/* GrandPy welcome */
+
+/* GrandPy is thinking */
 .eyebrow-l-down {
 	animation: eyebrow-l-down 0.25s 1;
 	animation-fill-mode: forwards;
@@ -120,7 +124,7 @@
 }
 
 
-
+/* GrandPy got the response */
 .eyebrow-l-up {
 	animation: eyebrow-l-up 0.25s 1;
 	animation-fill-mode: forwards;

@@ -18,8 +18,14 @@ if (!(navigator.userAgent.indexOf("Chrome") > -1)) {
     ===============
 */
 
+
+// var url = document.URL
+// console.log(url)
+// console.log(window.location.protocol + "//" + window.location.hostname)
+// // console.log(url + "/message/")
+
 function send_request(data) {
-    req.open("POST", "http://127.0.0.1:5000/message/", true);
+    req.open("POST", window.location.protocol + "//" + window.location.host + "/message/", true);
     req.send(data);
 }
 
@@ -185,11 +191,11 @@ req.addEventListener("error", function () {
     var off_responses = [
         "GrandPy se sent comme... déconnecté du réseau.",
         "Je me sens comme... déconnecté du réseau.",
-        "Pfiuuu, je suis pas connecté aujourd'hui... Repasse plus tard.",
+        "Pffiuuu, je suis pas connecté aujourd'hui... Repasse plus tard.",
     ]
     
     console.error("Erreur réseau");
-    write_message(confusion_responses[Math.floor(Math.random() * off_responses.length)]);
+    write_message(off_responses[Math.floor(Math.random() * off_responses.length)]);
 
 });
 
