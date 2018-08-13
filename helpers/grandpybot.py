@@ -60,7 +60,7 @@ class GrandPyBot:
                 "Bien sûr, bien sûr !",
                 ], 1)[0]
         
-        # Simulate Grandpy reflexion
+        # Grandpy introduce location
         response["localize"] = random.sample([
                 "C'est là :",
                 "C'est à peu près là :",
@@ -69,7 +69,6 @@ class GrandPyBot:
                 "Si ma mémoire est bonne c'est là :",
                 "Si ma mémoire est bonne - et elle est aussi fiable qu'une API Google ! - c'est là :",
                 ], 1)[0]
-
 
         if location["api_response"] == "ok":
             # print("address:", location["address"])
@@ -81,7 +80,23 @@ class GrandPyBot:
                 }
         else:
             # print("[No location found]")
-            response["location"] = { "[No location found]" }
+            # response["location"] = { "[No location found]" }
+            response["location"] = random.sample([
+                "Hum, je sais plus où c'est...",
+                "Cet endroit n'existe pas ! Sinon je saurais où c'est.",
+                "Soit ce lieu n'existe pas, soit je bugge...",
+                "T'es sûr du nom mon petit ?",
+                "Hum... Ça ne me dit rien..."
+                ], 1)[0]
+
+        # Grandpy introduce near loaction
+        response["near"] = random.sample([
+                "Et pas loin y avait ",
+                "Quel beeu quartier ! C'était pas loin de... Ah, que je me souvienne... Oui : ",
+                "J'adorait ce coin, c'était tout près de ",
+                "Moi j'allais souvent vers ",
+                "Dans le coin y avait ",
+                ], 1)[0]
 
         # Get some places stories
         places_stories = self.story_finder.get_story(location["latitude"], location["longitude"])
@@ -95,22 +110,26 @@ class GrandPyBot:
                 })
             response["stories"] = places_stories_textual_list
         else:
-            print("[No story found]")
+            # print("[No story found]")
             response["stories"] = "[No story found]"
 
         # Show the map
         if response["location"] != { "[No location found]" }:
             response["map"] = {
-                "text": "[Look at the map]",
+                # "text": "[Look at the map]",
                 "latitude": location["latitude"],
                 "longitude": location["longitude"],
             }
 
         # After story
-            response["end"] = "[FINI]"
+            # response["end"] = "[FINI]"
+            response["end"] = random.sample([
+                "Et voilà ! Autre chose ?",
+                "Que de souvenirs... Tu  veux me demander autre chose ?",
+                "Grandpy en sait des choses...",
+                "C'était le bon vieux temps...",
+                "Tu as encore besoin de moi mon petit ?"
+                ], 1)[0]
 
-
-        # API key
-            # response["apikey"] = 
 
         return response
