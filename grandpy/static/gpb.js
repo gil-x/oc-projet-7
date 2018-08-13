@@ -163,6 +163,7 @@ form.addEventListener("submit", function (e) {
     write_message(message.value, 0, 'user');
     console.log("Form data:", form_data);
     send_request(form_data);
+    document.getElementById("message").value = "";
 });
 
 form.addEventListener('keypress', function(e) {
