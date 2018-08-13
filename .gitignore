@@ -1,8 +1,8 @@
 /venv
 /.pytest_cache
 /.vscode
-/helpers/config.py
 /helpers/.pytest_cache
 /app/.pytest_cache
 /design
 keys.txt
+log.txt
