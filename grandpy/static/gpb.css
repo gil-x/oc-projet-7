@@ -12,7 +12,7 @@ body {
 		url("img/corner-ul.png") left top no-repeat,
 		url("img/corner-ur.png") right top no-repeat,
 		url("img/corner-bl.png") left bottom no-repeat,
-		url("img/corner-br.png") right bottom no-repeat
+		url("img/corner-br.png") right bottom no-repeat,
 		#222;
 }
 #page {
@@ -253,7 +253,8 @@ footer a {
 }
 @media only screen and (max-width: 768px), handheld, (orientation: portrait) {
 	body {
-		background-size: 10vw 10vw;
+		/* background-size: 10vw 10vw; */
+		background: #222;
 	}
 	#page {
 		width: 96%;

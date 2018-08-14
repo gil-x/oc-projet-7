@@ -11,6 +11,22 @@ if (!(navigator.userAgent.indexOf("Chrome") > -1)) {
     document.getElementById("chat-body").style.display = "flex";
 }
 
+// window.onresize = function(event) {
+//     ...
+// };
+function resize() {
+    console.log("screen.height:", window.innerHeight);
+    var wh = window.innerHeight
+    var ww = window.innerWidth
+
+    if (wh > ww) {
+        document.getElementById("chat-body").style.height = wh - 400 + "px";
+    } else {
+        document.getElementById("chat-body").style.height = wh / 2 - 150 + "px";
+    }
+}
+
+
 
 /*
     ===============
@@ -192,6 +208,8 @@ req.addEventListener("load", function () {
         console.error(req.status + " " + req.statusText);
         write_granpy_responses("error");
     }
+    resize();
+    console.log('load');
 });
 
 req.addEventListener("error", function () {
@@ -207,6 +225,11 @@ req.addEventListener("error", function () {
 
 });
 
+window.addEventListener('resize', function(){
+    this.setTimeout(resize(), 1000);
+});
+
+window.addEventListener('load', resize());
 
 
 
