@@ -11,11 +11,8 @@ if (!(navigator.userAgent.indexOf("Chrome") > -1)) {
     document.getElementById("chat-body").style.display = "flex";
 }
 
-// window.onresize = function(event) {
-//     ...
-// };
+/* Resise chat body (this function is called one time on page load. */
 function resize() {
-    console.log("screen.height:", window.innerHeight);
     var wh = window.innerHeight
     var ww = window.innerWidth
 
@@ -25,7 +22,6 @@ function resize() {
         document.getElementById("chat-body").style.height = wh / 2 - 150 + "px";
     }
 }
-
 
 
 /*
@@ -208,8 +204,6 @@ req.addEventListener("load", function () {
         console.error(req.status + " " + req.statusText);
         write_granpy_responses("error");
     }
-    resize();
-    console.log('load');
 });
 
 req.addEventListener("error", function () {
