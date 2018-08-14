@@ -251,7 +251,7 @@ footer a {
 		font-size: 1rem;
 	}
 }
-@media only screen and (max-width: 768px), handheld, (orientation: portrait) {
+@media only screen and (max-width: 360px), handheld, (orientation: portrait) {
 	body {
 		/* background-size: 10vw 10vw; */
 		background: #222;
